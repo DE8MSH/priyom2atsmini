@@ -10,6 +10,7 @@ MAX_STATIONS = 64
 MEM_FILE = "mem.txt"
 USER_FILE = "user.txt"
 PLAYLIST_FILE = "playlist.txt"
+DURATION=5
 
 # Regex
 regex = re.compile(r'(\w+)\s+(\d+)kHz.*?(USB/AM|USB|AM|CW|LSB|PSK|FSK|RTTY)?', re.IGNORECASE)
@@ -153,7 +154,7 @@ def main():
         for idx, (event_time, freq, station, mode) in enumerate(unique_list, 1):
             local_dt = event_time.astimezone()           # Umrechnung auf deine lokale PC-Zeit
             time_str = local_dt.strftime("%H:%M")
-            f.write(f"{time_str} {idx} 5\n")
+            f.write(f"{time_str} {idx} {DURATION}\n")
     
     # ====================== Übersicht ======================
     print(f"{'Lokale Zeit':<12} {'Kanal':<6} {'Station':<12} {'Frequenz':<10} Mode")
@@ -167,7 +168,7 @@ def main():
     print(f"\n🎉 Fertig! Alle Dateien wurden erstellt:")
     print(f"   • mem.txt       → Speicherplätze (Mode 2 = USB)")
     print(f"   • user.txt      → Stationsnamen")
-    print(f"   • playlist.txt  → Automatische Wiedergabe (nur erste Station pro Minute, 5 Min Dauer)")
+    print(f"   • playlist.txt  → Automatische Wiedergabe")
 
 if __name__ == "__main__":
     main()
